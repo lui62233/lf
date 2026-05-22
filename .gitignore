@@ -1,19 +1,8 @@
-# Dependencies
-node_modules/
+# PDFs are large
+講義/*/*.pdf
 __pycache__/
 *.pyc
-*.pyo
-.ipynb_checkpoints/
+node_modules/
+_ocr_pages/
+_ocr_text/
 
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Output
-*.pdf.bak
-*.html.bak

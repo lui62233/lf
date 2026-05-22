@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>霖楓學苑 · 陷阱敏感度診斷測試 | T1-T10 Trap Diagnostic</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1A3C6D;
+    --gold: #C9A84C;
+    --red: #DC2626;
+    --green: #16A34A;
+    --bg: #FFFDF7;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B7280;
+    --border: #E5E7EB;
+    --trap-red: #FEF2F2;
+    --trap-green: #F0FDF4;
+    --trap-amber: #FFFBEB;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Noto Sans HK', 'Microsoft JhengHei', sans-serif;
+    background: #F5F5F5;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+    padding: 0;
+    position: relative;
+    page-break-after: always;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    background: linear-gradient(160deg, var(--blue) 0%, #0D2447 60%, #0A1A35 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40mm 25mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border: 3px solid rgba(201,168,76,0.2);
+    border-radius: 50%;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 300px; height: 300px;
+    border: 3px solid rgba(201,168,76,0.15);
+    border-radius: 50%;
+  }
+  .cover-academy {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .cover-title {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 30px;
+  }
+  .cover-tagline {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--blue);
+    padding: 8px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+  .cover-meta {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-grid {
+    display: flex;
+    gap: 30px;
+    margin-top: 35px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-stat {
+    text-align: center;
+  }
+  .cover-stat-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gold);
+  }
+  .cover-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+
+  /* ── CONTENT PAGES ── */
+  .content-page {
+    padding: 20mm 18mm;
+  }
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid var(--blue);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  .page-header-left h1 {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--blue);
+  }
+  .page-header-left .sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .page-header-right {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 700;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* ── INSTRUCTIONS ── */
+  .instructions-box {
+    background: #F0F4F8;
+    border-left: 4px solid var(--blue);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 24px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .instructions-box strong { color: var(--blue); }
+
+  /* ── QUESTION CARD ── */
+  .section-header {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--blue);
+    margin: 28px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .trap-badge {
+    background: var(--red);
+    color: white;
+    font-size: 10px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+  }
+  .question-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .question-box:hover { border-color: var(--blue); }
+  .q-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .q-num {
+    font-weight: 900;
+    font-size: 15px;
+    color: var(--blue);
+    min-width: 30px;
+  }
+  .q-diff {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #ECFDF5;
+    color: var(--green);
+  }
+  .q-diff.mid { background: #FFFBEB; color: #B45309; }
+  .q-diff.hard { background: #FEF2F2; color: var(--red); }
+  .q-trap {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .q-body {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    margin: 6px 0 12px;
+  }
+  .q-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+  }
+  .q-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    border: 1px solid transparent;
+  }
+  .q-options label:hover { background: #F9FAFB; border-color: var(--border); }
+  .q-options input[type="radio"] { accent-color: var(--blue); transform: scale(1.1); }
+
+  /* ── SCORING SECTION ── */
+  .scoring-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 12px;
+  }
+  .scoring-grid th {
+    background: var(--blue);
+    color: white;
+    padding: 8px 6px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 11px;
+  }
+  .scoring-grid td {
+    padding: 7px 6px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .scoring-grid tr:nth-child(even) td { background: #F9FAFB; }
+  .scoring-grid .green-cell { background: #DCFCE7 !important; color: #166534; font-weight: 700; }
+  .scoring-grid .amber-cell { background: #FEF3C7 !important; color: #92400E; font-weight: 700; }
+  .scoring-grid .red-cell { background: #FEE2E2 !important; color: #991B1B; font-weight: 700; }
+
+  .score-legend {
+    display: flex;
+    gap: 20px;
+    margin: 12px 0 20px;
+    flex-wrap: wrap;
+  }
+  .score-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .score-legend-dot {
+    width: 16px; height: 16px;
+    border-radius: 4px;
+  }
+
+  /* ── REPORT ── */
+  .report-section {
+    background: linear-gradient(135deg, #F0F4F8, #FFFFFF);
+    border: 2px solid var(--blue);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .report-section h2 {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--blue);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .report-section .report-sub {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .report-summary {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .report-card {
+    flex: 1;
+    min-width: 100px;
+    background: white;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .report-card .big-num {
+    font-size: 28px;
+    font-weight: 900;
+  }
+  .report-card .big-num.green { color: var(--green); }
+  .report-card .big-num.red { color: var(--red); }
+  .report-card .big-num.amber { color: #B45309; }
+  .report-card .label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .weak-trap-list {
+    list-style: none;
+  }
+  .weak-trap-list li {
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .weak-trap-list li.amber { background: var(--trap-amber); border-left: 4px solid #F59E0B; }
+  .weak-trap-list li.red { background: var(--trap-red); border-left: 4px solid var(--red); }
+  .lesson-ref {
+    font-size: 11px;
+    color: var(--blue);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* ── ANSWER KEY ── */
+  .answer-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 16px 0;
+  }
+  .answer-table th {
+    background: var(--blue);
+    color: white;
+    padding: 8px;
+    font-size: 11px;
+    text-align: center;
+  }
+  .answer-table td {
+    padding: 6px 8px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .answer-table .correct { background: #DCFCE7; font-weight: 700; color: var(--green); font-size: 14px; }
+
+  /* ── TRAP EXPLANATIONS ── */
+  .trap-explain {
+    background: #FFFDF7;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 8px 0;
+  }
+  .trap-explain h4 {
+    font-size: 14px;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .trap-explain .wrong-answer {
+    color: var(--red);
+    font-weight: 700;
+    text-decoration: line-through;
+    margin-right: 8px;
+  }
+  .trap-explain .right-answer {
+    color: var(--green);
+    font-weight: 700;
+  }
+  .trap-explain .why {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; margin: 0; }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0;
+      box-shadow: none;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+    .question-box:hover { border-color: var(--border); }
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+    padding: 8px 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER PAGE ═══════════ -->
+<div class="page cover">
+  <div class="cover-academy">霖楓學苑 · LF Academy</div>
+  <div class="cover-title">陷阱敏感度<br>診斷測試</div>
+  <div class="cover-subtitle">T1-T10 Trap Sensitivity Diagnostic</div>
+  <div class="cover-tagline">不教數學，教避開陷阱。</div>
+  <div class="cover-grid">
+    <div class="cover-stat"><div class="cover-stat-num">30</div><div class="cover-stat-label">陷阱題</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">T1-T10</div><div class="cover-stat-label">陷阱類型</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">P3-P6</div><div class="cover-stat-label">跨年級範圍</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">~45min</div><div class="cover-stat-label">建議時間</div></div>
+  </div>
+  <div class="cover-meta">
+    學生姓名：_______________ &nbsp;|&nbsp; 年級：_______________ &nbsp;|&nbsp; 日期：_______________
+  </div>
+</div>
+
+<!-- ═══════════ TEST INSTRUCTIONS ═══════════ -->
+<div class="page">
+  <div class="content-page" style="display:flex;flex-direction:column;min-height:100%;">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>測試說明</h1>
+        <div class="sub">T1-T10 Trap Diagnostic Test · Instructions</div>
+      </div>
+      <div class="page-header-right">霖楓學苑<br>confidential</div>
+    </div>
+
+    <div class="instructions-box">
+      <strong>⚠️ 重要提示：</strong>呢個唔係普通數學測驗。每一題都係一個<b>陷阱</b>——睇下你識唔識避開佢。<br>
+      唔好估，認真計。答錯唔緊要，答錯嘅題目先係你最需要學嘅嘢。
+    </div>
+
+    <div style="display:flex;gap:24px;margin-bottom:20px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <h3 style="font-size:15px;color:var(--blue);margin-bottom:8px;">📋 答題規則</h3>
+        <ul style="font-size:13px;line-height:2;padding-left:20px;">
+          <li>共 <strong>30 題</strong>，每題 4 個選項</li>
+          <li>每題只選 <strong>一個</strong> 答案</li>
+          <li>建議時間：<strong>45 分鐘</strong></li>
+          <li>可用草稿紙，<strong>不可用計數機</strong>（SSPA 真實規則）</li>
+          <li>做完題目唔好即刻對答案——先填好「陷阱敏感度報告」</li>
+        </ul>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <h3 style="font-size:15px;color:var(--blue);margin-bottom:8px;">🏷️ 陷阱類型標籤</h3>
+        <table style="font-size:11px;width:100%;line-height:1.8;">
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T1</td><td>單位與進位陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T2</td><td>小數點陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T3</td><td>運算次序陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T4</td><td>面積公式混淆陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T5</td><td>幾何圖形混淆陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T6</td><td>分數陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T7</td><td>百分數陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T8</td><td>速率陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T9</td><td>方程陷阱</td></tr>
+          <tr><td style="padding-right:12px;font-weight:700;color:var(--blue);">T10</td><td>統計圖表陷阱</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="instructions-box" style="background:#FFFDF7;border-left-color:var(--gold);">
+      <strong>🧠 評分解讀：</strong><br>
+      🟢 <strong>0-1 題錯</strong> = 陷阱敏銳度強，繼續保持<br>
+      🟡 <strong>2 題錯</strong> = 需要複習相關陷阱<br>
+      🔴 <strong>3 題錯</strong> = 陷阱弱點，強烈建議專項訓練
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ QUESTIONS PAGES ═══════════ -->
+
+<!-- ── T1: 單位與進位 ── -->
+<div class="page">
+  <div class="content-page">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>陷阱測試卷</h1>
+        <div class="sub">T1-T5 · 第 1-15 題</div>
+      </div>
+      <div class="page-header-right">霖楓學苑<br>Trap Diagnostic</div>
+    </div>
+
+    <div class="section-header"><span>T1</span> 單位與進位陷阱 <span class="trap-badge">🪤 單位轉換</span></div>
+
+    <!-- T1 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q1</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T1 · 單位與進位</span>
+      </div>
+      <div class="q-body">3 公里 = ？米</div>
+      <div class="q-options">
+        <label><input type="radio" name="q1"> A. 30 米</label>
+        <label><input type="radio" name="q1"> B. 300 米</label>
+        <label><input type="radio" name="q1"> C. 3000 米</label>
+        <label><input type="radio" name="q1"> D. 30000 米</label>
+      </div>
+    </div>
+
+    <!-- T1 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q2</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T1 · 單位與進位</span>
+      </div>
+      <div class="q-body">一個長方形花園長 1.2 公里、闊 800 米。花園的面積是多少<b>平方公里</b>？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q2"> A. 0.96 平方公里</label>
+        <label><input type="radio" name="q2"> B. 9.6 平方公里</label>
+        <label><input type="radio" name="q2"> C. 96 平方公里</label>
+        <label><input type="radio" name="q2"> D. 960 平方公里</label>
+      </div>
+    </div>
+
+    <!-- T1 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q3</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T1 · 單位與進位</span>
+      </div>
+      <div class="q-body">水缸長 80 cm、闊 0.5 m、高 40 cm。注水至高度嘅 3/4，水嘅體積係幾多<b>升</b>？（1 L = 1000 cm³）</div>
+      <div class="q-options">
+        <label><input type="radio" name="q3"> A. 12 升</label>
+        <label><input type="radio" name="q3"> B. 48 升</label>
+        <label><input type="radio" name="q3"> C. 60 升</label>
+        <label><input type="radio" name="q3"> D. 120 升</label>
+      </div>
+    </div>
+
+    <div class="section-header"><span>T2</span> 小數點陷阱 <span class="trap-badge">🪤 點錯位</span></div>
+
+    <!-- T2 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q4</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T2 · 小數點</span>
+      </div>
+      <div class="q-body">0.5 × 0.4 = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q4"> A. 0.02</label>
+        <label><input type="radio" name="q4"> B. 0.2</label>
+        <label><input type="radio" name="q4"> C. 2</label>
+        <label><input type="radio" name="q4"> D. 20</label>
+      </div>
+    </div>
+
+    <!-- T2 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q5</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T2 · 小數點</span>
+      </div>
+      <div class="q-body">一支鉛筆 $3.5，一個筆盒 $18.8。小明買 4 支鉛筆同 1 個筆盒，俾 $50 紙幣，應找回幾多？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q5"> A. $13.2</label>
+        <label><input type="radio" name="q5"> B. $15.2</label>
+        <label><input type="radio" name="q5"> C. $17.2</label>
+        <label><input type="radio" name="q5"> D. $27.7</label>
+      </div>
+    </div>
+
+    <!-- T2 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q6</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T2 · 小數點</span>
+      </div>
+      <div class="q-body">0.08 ÷ 0.2 × 1.5 = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q6"> A. 0.06</label>
+        <label><input type="radio" name="q6"> B. 0.6</label>
+        <label><input type="radio" name="q6"> C. 0.024</label>
+        <label><input type="radio" name="q6"> D. 2.4</label>
+      </div>
+    </div>
+
+    <div class="section-header"><span>T3</span> 運算次序陷阱 <span class="trap-badge">🪤 ×÷ 先過 +−</span></div>
+
+    <!-- T3 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q7</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T3 · 運算次序</span>
+      </div>
+      <div class="q-body">8 + 4 × 3 = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q7"> A. 20</label>
+        <label><input type="radio" name="q7"> B. 36</label>
+        <label><input type="radio" name="q7"> C. 44</label>
+        <label><input type="radio" name="q7"> D. 60</label>
+      </div>
+    </div>
+
+    <!-- T3 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q8</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T3 · 運算次序</span>
+      </div>
+      <div class="q-body">(24 − 6 × 2) ÷ 3 + 8² = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q8"> A. 12</label>
+        <label><input type="radio" name="q8"> B. 20</label>
+        <label><input type="radio" name="q8"> C. 68</label>
+        <label><input type="radio" name="q8"> D. 72</label>
+      </div>
+    </div>
+
+    <!-- T3 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q9</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T3 · 運算次序</span>
+      </div>
+      <div class="q-body">18 + [ 6 × ( 9 − 4² ÷ 2 ) ] ÷ 3 = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q9"> A. 10</label>
+        <label><input type="radio" name="q9"> B. 16</label>
+        <label><input type="radio" name="q9"> C. 20</label>
+        <label><input type="radio" name="q9"> D. 28</label>
+      </div>
+    </div>
+
+    <div class="section-header"><span>T4</span> 面積公式混淆陷阱 <span class="trap-badge">🪤 ÷2 陷阱</span></div>
+
+    <!-- T4 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q10</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T4 · 面積公式</span>
+      </div>
+      <div class="q-body">三角形底 8 cm，高 5 cm。面積 = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q10"> A. 13 cm²</label>
+        <label><input type="radio" name="q10"> B. 20 cm²</label>
+        <label><input type="radio" name="q10"> C. 40 cm²</label>
+        <label><input type="radio" name="q10"> D. 80 cm²</label>
+      </div>
+    </div>
+
+    <!-- T4 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q11</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T4 · 面積公式</span>
+      </div>
+      <div class="q-body">平行四邊形底 2 m，高 50 cm。面積 = ？<b>cm²</b></div>
+      <div class="q-options">
+        <label><input type="radio" name="q11"> A. 100 cm²</label>
+        <label><input type="radio" name="q11"> B. 1000 cm²</label>
+        <label><input type="radio" name="q11"> C. 5000 cm²</label>
+        <label><input type="radio" name="q11"> D. 10000 cm²</label>
+      </div>
+    </div>
+
+    <!-- T4 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q12</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T4 · 面積公式</span>
+      </div>
+      <div class="q-body">梯形上底 6、下底 10、斜邊長 8、高 6。求面積時，邊個數字<b>唔需要</b>用到？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q12"> A. 上底 6</label>
+        <label><input type="radio" name="q12"> B. 下底 10</label>
+        <label><input type="radio" name="q12"> C. 斜邊 8</label>
+        <label><input type="radio" name="q12"> D. 高 6</label>
+      </div>
+    </div>
+
+    <div class="section-header"><span>T5</span> 幾何圖形混淆陷阱 <span class="trap-badge">🪤 圖形特性</span></div>
+
+    <!-- T5 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q13</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T5 · 幾何圖形</span>
+      </div>
+      <div class="q-body">正方形邊長 5 cm。周界 = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q13"> A. 10 cm</label>
+        <label><input type="radio" name="q13"> B. 20 cm</label>
+        <label><input type="radio" name="q13"> C. 25 cm</label>
+        <label><input type="radio" name="q13"> D. 25 cm²</label>
+      </div>
+    </div>
+
+    <!-- T5 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q14</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T5 · 幾何圖形</span>
+      </div>
+      <div class="q-body">以下邊個講法<b>一定正確</b>？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q14"> A. 所有菱形都係正方形</label>
+        <label><input type="radio" name="q14"> B. 所有長方形都係平行四邊形</label>
+        <label><input type="radio" name="q14"> C. 所有平行四邊形都係菱形</label>
+        <label><input type="radio" name="q14"> D. 所有梯形都係平行四邊形</label>
+      </div>
+    </div>
+
+    <!-- T5 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q15</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T5 · 幾何圖形</span>
+      </div>
+      <div class="q-body">將一個大正方形分成 4 個相同大小嘅小正方形。每個小正方形嘅周界係 12 cm。原來大正方形嘅面積係幾多 cm²？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q15"> A. 9 cm²</label>
+        <label><input type="radio" name="q15"> B. 36 cm²</label>
+        <label><input type="radio" name="q15"> C. 48 cm²</label>
+        <label><input type="radio" name="q15"> D. 144 cm²</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── T6-T10 ── -->
+<div class="page">
+  <div class="content-page">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>陷阱測試卷</h1>
+        <div class="sub">T6-T10 · 第 16-30 題</div>
+      </div>
+      <div class="page-header-right">霖楓學苑<br>Trap Diagnostic</div>
+    </div>
+
+    <div class="section-header"><span>T6</span> 分數陷阱 <span class="trap-badge">🪤 分子分母</span></div>
+
+    <!-- T6 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q16</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T6 · 分數</span>
+      </div>
+      <div class="q-body">1/2 + 1/3 = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q16"> A. 1/5</label>
+        <label><input type="radio" name="q16"> B. 2/5</label>
+        <label><input type="radio" name="q16"> C. 5/6</label>
+        <label><input type="radio" name="q16"> D. 2/6</label>
+      </div>
+    </div>
+
+    <!-- T6 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q17</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T6 · 分數</span>
+      </div>
+      <div class="q-body">一支飲品飲咗 3/5，剩低嘅 2/3 俾咗妹妹。妹妹飲咗原本嘅幾分之幾？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q17"> A. 4/15</label>
+        <label><input type="radio" name="q17"> B. 2/5</label>
+        <label><input type="radio" name="q17"> C. 2/3</label>
+        <label><input type="radio" name="q17"> D. 3/5</label>
+      </div>
+    </div>
+
+    <!-- T6 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q18</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T6 · 分數</span>
+      </div>
+      <div class="q-body">書架上層有書 120 本。下層嘅書係上層嘅 3/4，而下層嘅 2/5 係中文書。書架下層有幾多本<b>唔係中文書</b>？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q18"> A. 36 本</label>
+        <label><input type="radio" name="q18"> B. 54 本</label>
+        <label><input type="radio" name="q18"> C. 66 本</label>
+        <label><input type="radio" name="q18"> D. 90 本</label>
+      </div>
+    </div>
+
+    <div class="section-header"><span>T7</span> 百分數陷阱 <span class="trap-badge">🪤 基準量混亂</span></div>
+
+    <!-- T7 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q19</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T7 · 百分數</span>
+      </div>
+      <div class="q-body">一件衫原價 $200，八折出售。售價係幾多？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q19"> A. $80</label>
+        <label><input type="radio" name="q19"> B. $120</label>
+        <label><input type="radio" name="q19"> C. $160</label>
+        <label><input type="radio" name="q19"> D. $180</label>
+      </div>
+    </div>
+
+    <!-- T7 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q20</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T7 · 百分數</span>
+      </div>
+      <div class="q-body">一件貨品加價 20% 後賣 $360。再打九折出售，最終售價係？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q20"> A. $270</label>
+        <label><input type="radio" name="q20"> B. $288</label>
+        <label><input type="radio" name="q20"> C. $324</label>
+        <label><input type="radio" name="q20"> D. $396</label>
+      </div>
+    </div>
+
+    <!-- T7 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q21</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T7 · 百分數</span>
+      </div>
+      <div class="q-body">小明考試有 32 題答錯，佔全部題目嘅 20%。全部有幾多題？如果佢想合格（答啱 ≥ 60%），佢最少要答啱幾多題？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q21"> A. 全部 160 題，最少答啱 96 題</label>
+        <label><input type="radio" name="q21"> B. 全部 160 題，最少答啱 64 題</label>
+        <label><input type="radio" name="q21"> C. 全部 128 題，最少答啱 77 題</label>
+        <label><input type="radio" name="q21"> D. 全部 128 題，最少答啱 96 題</label>
+      </div>
+    </div>
+
+    <div class="section-header"><span>T8</span> 速率陷阱 <span class="trap-badge">🪤 平均速率 ≠ 速率平均</span></div>
+
+    <!-- T8 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q22</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T8 · 速率</span>
+      </div>
+      <div class="q-body">一架車以 60 km/h 行駛咗 3 小時，行咗幾遠？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q22"> A. 20 km</label>
+        <label><input type="radio" name="q22"> B. 120 km</label>
+        <label><input type="radio" name="q22"> C. 180 km</label>
+        <label><input type="radio" name="q22"> D. 240 km</label>
+      </div>
+    </div>
+
+    <!-- T8 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q23</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T8 · 速率</span>
+      </div>
+      <div class="q-body">小明由屋企去學校：去程速率 4 km/h，回程用同一條路速率 6 km/h。全程嘅平均速率係幾多 km/h？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q23"> A. 4.8 km/h</label>
+        <label><input type="radio" name="q23"> B. 5 km/h</label>
+        <label><input type="radio" name="q23"> C. 5.2 km/h</label>
+        <label><input type="radio" name="q23"> D. 10 km/h</label>
+      </div>
+    </div>
+
+    <!-- T8 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q24</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T8 · 速率</span>
+      </div>
+      <div class="q-body">A、B 兩車相距 300 km，同時相向而行。A 車速率 70 km/h，B 車速率 50 km/h。幾耐之後兩車相遇？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q24"> A. 2 小時</label>
+        <label><input type="radio" name="q24"> B. 2 小時 30 分鐘</label>
+        <label><input type="radio" name="q24"> C. 3 小時</label>
+        <label><input type="radio" name="q24"> D. 4 小時 17 分鐘</label>
+      </div>
+    </div>
+
+    <div class="section-header"><span>T9</span> 方程陷阱 <span class="trap-badge">🪤 逆運算混亂</span></div>
+
+    <!-- T9 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q25</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T9 · 方程</span>
+      </div>
+      <div class="q-body">如果 x + 7 = 15，x = ？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q25"> A. 7</label>
+        <label><input type="radio" name="q25"> B. 8</label>
+        <label><input type="radio" name="q25"> C. 15</label>
+        <label><input type="radio" name="q25"> D. 22</label>
+      </div>
+    </div>
+
+    <!-- T9 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q26</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T9 · 方程</span>
+      </div>
+      <div class="q-body">解方程：3(x − 4) = 5x − 20</div>
+      <div class="q-options">
+        <label><input type="radio" name="q26"> A. x = −1</label>
+        <label><input type="radio" name="q26"> B. x = 1</label>
+        <label><input type="radio" name="q26"> C. x = 4</label>
+        <label><input type="radio" name="q26"> D. x = 16</label>
+      </div>
+    </div>
+
+    <!-- T9 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q27</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T9 · 方程</span>
+      </div>
+      <div class="q-body">小明諗咗一個數。將呢個數加 5、再乘 3、再減去 9，結果係 36。小明諗嘅數係幾多？</div>
+      <div class="q-options">
+        <label><input type="radio" name="q27"> A. 10</label>
+        <label><input type="radio" name="q27"> B. 12</label>
+        <label><input type="radio" name="q27"> C. 14</label>
+        <label><input type="radio" name="q27"> D. 20</label>
+      </div>
+    </div>
+
+    <div class="section-header"><span>T10</span> 統計圖表陷阱 <span class="trap-badge">🪤 睇錯軸</span></div>
+
+    <!-- T10 Q1 (🌱) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q28</span>
+        <span class="q-diff">🌱 基礎</span>
+        <span class="q-trap">T10 · 統計圖表</span>
+      </div>
+      <div class="q-body">
+        棒形圖顯示：星期一賣出 20 個、星期二 35 個、星期三 30 個。<br>
+        星期二比星期一<b>多賣幾多個</b>？
+      </div>
+      <div class="q-options">
+        <label><input type="radio" name="q28"> A. 5 個</label>
+        <label><input type="radio" name="q28"> B. 10 個</label>
+        <label><input type="radio" name="q28"> C. 15 個</label>
+        <label><input type="radio" name="q28"> D. 55 個</label>
+      </div>
+    </div>
+
+    <!-- T10 Q2 (🌿) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q29</span>
+        <span class="q-diff mid">🌿 中等</span>
+        <span class="q-trap">T10 · 統計圖表</span>
+      </div>
+      <div class="q-body">
+        折線圖顯示某商店 1-6 月銷售額（萬元）：<br>
+        1月: 10, 2月: 8, 3月: 14, 4月: 12, 5月: 20, 6月: 18<br>
+        銷售額嘅<b>中位數</b>係幾多萬元？
+      </div>
+      <div class="q-options">
+        <label><input type="radio" name="q29"> A. 12 萬元</label>
+        <label><input type="radio" name="q29"> B. 13 萬元</label>
+        <label><input type="radio" name="q29"> C. 13.7 萬元</label>
+        <label><input type="radio" name="q29"> D. 14 萬元</label>
+      </div>
+    </div>
+
+    <!-- T10 Q3 (🌳) -->
+    <div class="question-box">
+      <div class="q-meta">
+        <span class="q-num">Q30</span>
+        <span class="q-diff hard">🌳 高階</span>
+        <span class="q-trap">T10 · 統計圖表</span>
+      </div>
+      <div class="q-body">
+        某校 P5 有 200 人。圓形圖顯示課外活動分佈：運動 35%、音樂 25%、美術 15%、<b>其餘為無參加</b>。<br>
+        無參加課外活動嘅學生有幾多人？
+      </div>
+      <div class="q-options">
+        <label><input type="radio" name="q30"> A. 25 人</label>
+        <label><input type="radio" name="q30"> B. 30 人</label>
+        <label><input type="radio" name="q30"> C. 40 人</label>
+        <label><input type="radio" name="q30"> D. 50 人</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ ANSWER KEY ═══════════ -->
+<div class="page">
+  <div class="content-page">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>答案 · Answer Key</h1>
+        <div class="sub">Trap Diagnostic Test · 30 Questions</div>
+      </div>
+      <div class="page-header-right">霖楓學苑<br>僅供批改用</div>
+    </div>
+
+    <table class="answer-table">
+      <thead>
+        <tr><th>題號</th><th>陷阱</th><th>難度</th><th>答案</th><th>常見錯誤</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Q1</td><td>T1 單位進位</td><td>🌱</td><td class="correct">C</td><td style="font-size:11px;">A: 亂數; B: 乘100; D: 乘10000</td></tr>
+        <tr><td>Q2</td><td>T1 單位進位</td><td>🌿</td><td class="correct">A</td><td style="font-size:11px;">B: 未轉換闊度單位(800m=0.8km); C: 直接乘</td></tr>
+        <tr><td>Q3</td><td>T1 單位進位</td><td>🌳</td><td class="correct">B</td><td style="font-size:11px;">A: 忘記×3/4; C: 未統一單位; D: 無×3/4+單位錯</td></tr>
+        <tr><td>Q4</td><td>T2 小數點</td><td>🌱</td><td class="correct">B</td><td style="font-size:11px;">A: 小數位數錯; C: 未點小數; D: 亂點</td></tr>
+        <tr><td>Q5</td><td>T2 小數點</td><td>🌿</td><td class="correct">C</td><td style="font-size:11px;">A: 計錯鉛筆總價; B: 加法錯; D: 減法錯</td></tr>
+        <tr><td>Q6</td><td>T2 小數點</td><td>🌳</td><td class="correct">B</td><td style="font-size:11px;">A: 次序錯; C: 當成0.08÷(0.2×1.5)</td></tr>
+        <tr><td>Q7</td><td>T3 運算次序</td><td>🌱</td><td class="correct">A</td><td style="font-size:11px;">B: (8+4)×3=36 先加後乘</td></tr>
+        <tr><td>Q8</td><td>T3 運算次序</td><td>🌿</td><td class="correct">C</td><td style="font-size:11px;">A: 括號內錯; B: 指數錯; D: 先÷後指數</td></tr>
+        <tr><td>Q9</td><td>T3 運算次序</td><td>🌳</td><td class="correct">C</td><td style="font-size:11px;">A: 乘法次序混亂; D: 指數運算錯</td></tr>
+        <tr><td>Q10</td><td>T4 面積公式</td><td>🌱</td><td class="correct">B</td><td style="font-size:11px;">C: 忘÷2 = 40; D: 底×高×2</td></tr>
+        <tr><td>Q11</td><td>T4 面積公式</td><td>🌿</td><td class="correct">D</td><td style="font-size:11px;">A: 單位錯+忘轉換; B: 忘轉換底(2m=200cm); C: 底轉錯</td></tr>
+        <tr><td>Q12</td><td>T4 面積公式</td><td>🌳</td><td class="correct">C</td><td style="font-size:11px;">A/B/D: 梯形公式=(上底+下底)×高÷2 必須用</td></tr>
+        <tr><td>Q13</td><td>T5 幾何圖形</td><td>🌱</td><td class="correct">B</td><td style="font-size:11px;">C: 計咗面積; D: 面積單位誤當周界</td></tr>
+        <tr><td>Q14</td><td>T5 幾何圖形</td><td>🌿</td><td class="correct">B</td><td style="font-size:11px;">A: 菱形不一定直角; C: 平行四邊形不一定等邊; D: 梯形不一定平行對邊</td></tr>
+        <tr><td>Q15</td><td>T5 幾何圖形</td><td>🌳</td><td class="correct">B</td><td style="font-size:11px;">C: 誤×4; D: 計咗大正方形周界再平方</td></tr>
+        <tr><td>Q16</td><td>T6 分數</td><td>🌱</td><td class="correct">C</td><td style="font-size:11px;">A: 分子分母各自加; B: 亂通分; D: 未通分</td></tr>
+        <tr><td>Q17</td><td>T6 分數</td><td>🌿</td><td class="correct">A</td><td style="font-size:11px;">B: 計咗剩低嘅量; C: 直接用2/3</td></tr>
+        <tr><td>Q18</td><td>T6 分數</td><td>🌳</td><td class="correct">B</td><td style="font-size:11px;">A: 計咗中文書(36本); C: 計咗全書架; D: 計咗下層總數</td></tr>
+        <tr><td>Q19</td><td>T7 百分數</td><td>🌱</td><td class="correct">C</td><td style="font-size:11px;">A: 計咗折扣額; B: 六折; D: 九折</td></tr>
+        <tr><td>Q20</td><td>T7 百分數</td><td>🌿</td><td class="correct">C</td><td style="font-size:11px;">A: 先計原價$300打九折=$270但忽略加價後係$360; B: 計算錯誤; D: 當加10%</td></tr>
+        <tr><td>Q21</td><td>T7 百分數</td><td>🌳</td><td class="correct">A</td><td style="font-size:11px;">B: 計咗合格線係40%非60%; C/D: 總題數計錯</td></tr>
+        <tr><td>Q22</td><td>T8 速率</td><td>🌱</td><td class="correct">C</td><td style="font-size:11px;">A: 距離÷速率; B: 速率×2; D: 速率×4</td></tr>
+        <tr><td>Q23</td><td>T8 速率</td><td>🌿</td><td class="correct">A</td><td style="font-size:11px;">B: (4+6)÷2=5 即直接平均速率; D: 4+6=10</td></tr>
+        <tr><td>Q24</td><td>T8 速率</td><td>🌳</td><td class="correct">B</td><td style="font-size:11px;">A: 300÷150=2 但忽略分鐘; C: 300÷100; D: 用錯公式</td></tr>
+        <tr><td>Q25</td><td>T9 方程</td><td>🌱</td><td class="correct">B</td><td style="font-size:11px;">A: x=7 (減7); C: 冇計; D: 加7</td></tr>
+        <tr><td>Q26</td><td>T9 方程</td><td>🌿</td><td class="correct">C</td><td style="font-size:11px;">A: 符號錯; B: 展開錯; D: 將3(x-4)誤當3x-4</td></tr>
+        <tr><td>Q27</td><td>T9 方程</td><td>🌳</td><td class="correct">A</td><td style="font-size:11px;">B: 逆運算次序錯; C/D: 逆運算用錯</td></tr>
+        <tr><td>Q28</td><td>T10 統計圖表</td><td>🌱</td><td class="correct">C</td><td style="font-size:11px;">A: 睇錯數; B: read error; D: 加咗兩個數</td></tr>
+        <tr><td>Q29</td><td>T10 統計圖表</td><td>🌿</td><td class="correct">B</td><td style="font-size:11px;">A: 排序錯; C: 計咗平均數; D: 取錯中位</td></tr>
+        <tr><td>Q30</td><td>T10 統計圖表</td><td>🌳</td><td class="correct">D</td><td style="font-size:11px;">A: 100%-35%-25%-15%=25% 然後200×25%=50 ✓ 但選A係誤算; C: 計錯</td></tr>
+      </tbody>
+    </table>
+
+    <div style="font-size:12px;color:var(--muted);margin-top:12px;padding:10px;background:#F9FAFB;border-radius:6px;">
+      <strong>📝 計分方法：</strong> 每題 1 分，共 30 分。將分數填入下一頁嘅「陷阱敏感度報告」計分矩陣。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SCORING MATRIX & REPORT ═══════════ -->
+<div class="page">
+  <div class="content-page">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>陷阱敏感度報告</h1>
+        <div class="sub">Trap Sensitivity Report · 計分與診斷</div>
+      </div>
+      <div class="page-header-right">霖楓學苑<br>confidential</div>
+    </div>
+
+    <div style="font-size:13px;margin-bottom:14px;">
+      學生姓名：_______________ &nbsp;|&nbsp; 年級：_______________ &nbsp;|&nbsp; 總分：______ / 30
+    </div>
+
+    <!-- Scoring Matrix -->
+    <table class="scoring-grid">
+      <thead>
+        <tr>
+          <th>陷阱類型</th>
+          <th>Q (🌱)</th>
+          <th>Q (🌿)</th>
+          <th>Q (🌳)</th>
+          <th>答錯數</th>
+          <th>敏感度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T1 單位與進位</td>
+          <td>Q1: ☐錯</td><td>Q2: ☐錯</td><td>Q3: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t1-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T2 小數點</td>
+          <td>Q4: ☐錯</td><td>Q5: ☐錯</td><td>Q6: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t2-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T3 運算次序</td>
+          <td>Q7: ☐錯</td><td>Q8: ☐錯</td><td>Q9: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t3-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T4 面積公式混淆</td>
+          <td>Q10: ☐錯</td><td>Q11: ☐錯</td><td>Q12: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t4-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T5 幾何圖形混淆</td>
+          <td>Q13: ☐錯</td><td>Q14: ☐錯</td><td>Q15: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t5-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T6 分數陷阱</td>
+          <td>Q16: ☐錯</td><td>Q17: ☐錯</td><td>Q18: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t6-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T7 百分數陷阱</td>
+          <td>Q19: ☐錯</td><td>Q20: ☐錯</td><td>Q21: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t7-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T8 速率陷阱</td>
+          <td>Q22: ☐錯</td><td>Q23: ☐錯</td><td>Q24: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t8-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T9 方程陷阱</td>
+          <td>Q25: ☐錯</td><td>Q26: ☐錯</td><td>Q27: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t9-grade" style="font-weight:700;">☐</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-weight:700;">T10 統計圖表陷阱</td>
+          <td>Q28: ☐錯</td><td>Q29: ☐錯</td><td>Q30: ☐錯</td>
+          <td>___ / 3</td>
+          <td id="t10-grade" style="font-weight:700;">☐</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="score-legend">
+      <div class="score-legend-item"><div class="score-legend-dot" style="background:#DCFCE7;border:2px solid var(--green);"></div> 🟢 0-1 題錯 = 陷阱敏銳，繼續保持</div>
+      <div class="score-legend-item"><div class="score-legend-dot" style="background:#FEF3C7;border:2px solid #F59E0B;"></div> 🟡 2 題錯 = 需要重點複習</div>
+      <div class="score-legend-item"><div class="score-legend-dot" style="background:#FEE2E2;border:2px solid var(--red);"></div> 🔴 3 題錯 = 陷阱弱點，急需專項訓練</div>
+    </div>
+
+    <!-- Weak Trap Analysis -->
+    <div class="report-section" style="margin-top:16px;">
+      <h2>🎯 你嘅陷阱敏感度分析</h2>
+      <div class="report-sub">以下係根據你答錯題目嘅診斷結果</div>
+
+      <div style="font-size:13px;line-height:1.8;margin-bottom:16px;">
+        <strong>總體表現：</strong>______ / 30 正確<br>
+        <strong>陷阱弱點（需關注）：</strong>
+      </div>
+
+      <!-- T1 -->
+      <div class="trap-explain">
+        <h4>🪤 T1 單位與進位陷阱 — 如果答錯 Q1-Q3</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>忘記統一單位就開始計數。見到「公里」同「米」同時出現即刻要轉換！<br>
+          <strong>🧠 口訣：</strong>「先轉單位後計算，唔轉單位必錯硬！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L03 單位換算全攻略 · L04 進階單位應用題
+        </div>
+      </div>
+
+      <!-- T2 -->
+      <div class="trap-explain">
+        <h4>🪤 T2 小數點陷阱 — 如果答錯 Q4-Q6</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>小數乘法/除法後點錯小數位。0.5 × 0.4 唔係 2，係 0.2！<br>
+          <strong>🧠 口訣：</strong>「小數相乘數位數，小數相除移小數！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L07 小數四則運算 · L08 小數應用題精解
+        </div>
+      </div>
+
+      <!-- T3 -->
+      <div class="trap-explain">
+        <h4>🪤 T3 運算次序陷阱 — 如果答錯 Q7-Q9</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>見到加減就即刻計，忽略咗乘除要優先。<br>
+          <strong>🧠 口訣：</strong>「先乘除後加減，有括號最優先！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L11 四則混合運算 · L12 括號與指數運算
+        </div>
+      </div>
+
+      <!-- T4 -->
+      <div class="trap-explain">
+        <h4>🪤 T4 面積公式混淆陷阱 — 如果答錯 Q10-Q12</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>三角形唔記得÷2、梯形用錯斜邊當高、平行四邊形單位錯。<br>
+          <strong>🧠 口訣：</strong>「底乘高係平行四邊，底乘高除二係三角！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L15 平面圖形面積公式 · L16 複合圖形面積 · L17 體積入門
+        </div>
+      </div>
+
+      <!-- T5 -->
+      <div class="trap-explain">
+        <h4>🪤 T5 幾何圖形混淆陷阱 — 如果答錯 Q13-Q15</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>混淆正方形/菱形/長方形/平行四邊形嘅從屬關係。<br>
+          <strong>🧠 口訣：</strong>「正方形係菱形加直角，長方形係平行四邊加直角！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L13 四邊形分類與特性 · L14 圖形分割與拼砌
+        </div>
+      </div>
+
+      <!-- T6 -->
+      <div class="trap-explain">
+        <h4>🪤 T6 分數陷阱 — 如果答錯 Q16-Q18</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>分子分母各自相加、分數乘法當加法做、求「剩餘」計錯基準。<br>
+          <strong>🧠 口訣：</strong>「加減先通分，乘除直接計，文字題搵基準！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L19 分數四則運算 · L20 分數應用題 · L21 分數比較
+        </div>
+      </div>
+
+      <!-- T7 -->
+      <div class="trap-explain">
+        <h4>🪤 T7 百分數陷阱 — 如果答錯 Q19-Q21</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>折扣計錯（八折=×0.8 唔係除）、連續加減百分數用錯基準量。<br>
+          <strong>🧠 口訣：</strong>「原價乘折扣等於售價，加價後折扣用新價！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L24 百分數基礎 · L25 折扣與賺蝕 · L26 進階百分數應用
+        </div>
+      </div>
+
+      <!-- T8 -->
+      <div class="trap-explain">
+        <h4>🪤 T8 速率陷阱 — 如果答錯 Q22-Q24</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>平均速率 ≠ 速率嘅平均值！來回唔同速率一定要用總距離÷總時間。<br>
+          <strong>🧠 口訣：</strong>「平均速率唔係平均，總距離除總時間！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L30 速率基礎 · L31 平均速率 · L32 相遇追及問題
+        </div>
+      </div>
+
+      <!-- T9 -->
+      <div class="trap-explain">
+        <h4>🪤 T9 方程陷阱 — 如果答錯 Q25-Q27</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>移項時正負號搞錯、展開括號漏乘、逆運算次序混亂。<br>
+          <strong>🧠 口訣：</strong>「移項要變號，展開要乘晒，逆運算倒轉做！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L35 簡易方程 · L36 兩步方程 · L37 進階方程應用
+        </div>
+      </div>
+
+      <!-- T10 -->
+      <div class="trap-explain">
+        <h4>🪤 T10 統計圖表陷阱 — 如果答錯 Q28-Q30</h4>
+        <div class="why">
+          <strong>最常見錯誤：</strong>睇錯刻度/軸、計咗平均數當成中位數、圓形圖剩餘百分比計錯。<br>
+          <strong>🧠 口訣：</strong>「先睇圖例辨花紋，再搵月份對位置，水平拉線讀刻度！」<br>
+          <strong>📚 霖楓學苑相關課程：</strong>L42 棒形圖與折線圖 · L43 圓形圖 · L44 數據分析與誤讀
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommendation Box -->
+    <div style="background:var(--blue);color:white;padding:16px 20px;border-radius:8px;margin-top:16px;font-size:13px;line-height:1.8;">
+      <strong style="font-size:15px;">📋 下一步行動建議</strong><br>
+      1. 搵出你嘅 🔴 紅色陷阱 → 優先上對應嘅霖楓學苑課程<br>
+      2. 每星期做 3-5 題相關陷阱題 → 建立「陷阱敏感度」<br>
+      3. 做完學校試卷後，用呢份報告覆卷 → 睇下自己仲有冇中同一類陷阱<br>
+      4. WhatsApp 我哋預約<b>免費陷阱診斷分析</b>：<span style="color:var(--gold);">+852 XXXX XXXX</span>
+    </div>
+
+    <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:16px;">
+      霖楓學苑 · LF Academy &copy; 2026 &nbsp;|&nbsp; 不教數學，教避開陷阱。 &nbsp;|&nbsp; www.lamfung.edu.hk
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

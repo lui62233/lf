@@ -1,0 +1,81 @@
+﻿file,level,score,critical_count,has_cover,has_et,has_footer,has_grid,has_print,has_trap_compare,has_mnemonic,mnemonic_count,warn_count,section_count,kp_count,qt_count,has_svg,issues
+LF-P3-上-L01_萬以內數的認識.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,10,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L02_萬以內加法.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,10,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L03_萬以內減法.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,10,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L04_加減混合運算.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,10,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L05_乘法認識.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,10,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L06_兩位數乘一位數乘法.html,P3,5,1,True,True,True,True,True,True,True,1,1,6,3,10,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L07_乘法應用題.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,2,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L08_除法認識.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,2,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L09_基本除法.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,10,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L10_除法應用題.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,2,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L11_分數初探.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,2,9,True,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L12_同分母分數加法.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,2,9,True,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L13_長度單位.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L14_重量單位.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L15_容量單位.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L16_時間.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-上-L17_時間應用題.html,P3,4,2,True,True,True,True,True,True,True,2,0,6,2,9,False,COVER INFO missing: SSPA 關聯 | MISSING: warning alerts (.warn) | MISSING: SSPA/呈分試 references
+LF-P3-上-L18_立體圖形認識.html,P3,4,2,True,True,True,True,True,False,True,2,2,6,3,8,True,COVER INFO missing: SSPA 關聯 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: SSPA/呈分試 references
+LF-P3-上-L19_上學期總複習.html,P3,2,4,True,True,True,True,True,False,True,6,0,7,5,4,False,COVER INFO missing: SSPA 關聯 | COVER INFO missing: 前置知識 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warm-up section | MISSING: warning alerts (.warn) | NOTE: no step cards (.sc) — may be OK for some lesson types | MISSING: SSPA/呈分試 references
+LF-P3-上-L20_學期總結+聖誕練習包.html,P3,1,5,True,False,True,True,True,False,True,2,0,6,2,3,False,COVER INFO missing: 對應教材 | COVER INFO missing: 核心陷阱 | COVER INFO missing: SSPA 關聯 | COVER INFO missing: 前置知識 | COVER INFO missing: 本堂目標 | MISSING: error table (.et) | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warm-up section | MISSING: warning alerts (.warn) | NOTE: no step cards (.sc) — may be OK for some lesson types | MISSING: SSPA/呈分試 references
+LF-P3-下-L21_乘法進階.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L22_除法進階.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L23_除法應用題.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,2,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L24_四則混合.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L25_分數進階.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L26_分數應用題.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L27_小數初探.html,P3,5,1,True,True,True,True,True,True,True,2,2,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L28_棒形圖閱讀.html,P3,4,2,True,True,True,True,True,False,True,2,1,6,3,9,True,COVER INFO missing: SSPA 關聯 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: SSPA/呈分試 references
+LF-P3-下-L29_棒形圖製作.html,P3,4,2,True,True,True,True,True,False,True,2,1,6,3,9,True,COVER INFO missing: SSPA 關聯 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: SSPA/呈分試 references
+LF-P3-下-L30_綜合小數測量圖表.html,P3,4,2,True,True,True,True,True,False,True,2,1,6,2,9,False,COVER INFO missing: SSPA 關聯 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: SSPA/呈分試 references
+LF-P3-下-L31_容量進階.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L32_時間進階.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L33_時間應用題.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L34_立體圖形進階.html,P3,4,2,True,True,True,True,True,False,True,2,1,6,3,9,True,COVER INFO missing: SSPA 關聯 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: SSPA/呈分試 references
+LF-P3-下-L35_數感進階.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L36_方向和位置.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L37_對稱初探.html,P3,4,2,True,True,True,True,True,False,True,2,1,6,3,9,True,COVER INFO missing: SSPA 關聯 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: SSPA/呈分試 references
+LF-P3-下-L38_可能性入門.html,P3,5,1,True,True,True,True,True,True,True,2,1,6,3,9,False,COVER INFO missing: SSPA 關聯 | MISSING: SSPA/呈分試 references
+LF-P3-下-L39_下學期總複習.html,P3,1,5,True,True,True,True,True,False,True,1,0,7,0,7,False,COVER INFO missing: SSPA 關聯 | COVER INFO missing: 前置知識 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warm-up section | MISSING: warning alerts (.warn) | MISSING: knowledge point sections (.kp) | MISSING: SSPA/呈分試 references
+LF-P3-下-L40_學期總結+暑假升P4預告.html,P3,2,4,True,True,True,True,True,False,True,1,0,8,1,2,False,COVER INFO missing: 核心陷阱 | COVER INFO missing: SSPA 關聯 | COVER INFO missing: 前置知識 | Error table has only 5 rows (need >=6) | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warm-up section | MISSING: warning alerts (.warn) | MISSING: SSPA/呈分試 references
+LF-P4-上-L01_五位數認識.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L02_兩位數除法.html,P4,6,0,True,True,True,True,True,True,True,1,2,7,2,8,False,
+LF-P4-上-L03_三位數除法.html,P4,6,0,True,True,True,True,True,True,True,1,2,7,2,8,False,
+LF-P4-上-L04_四則混合運算.html,P4,6,0,True,True,True,True,True,True,True,1,2,7,2,8,False,
+LF-P4-上-L05_四則應用題.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,False,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L06_倍數與因數.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L07_HCF+LCM.html,P4,6,0,True,True,True,True,True,True,True,1,2,7,2,8,True,
+LF-P4-上-L08_分數認識.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L09_同分母分數加減.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,False,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L10_分數比較+擴分約分.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,False,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L11_面積入門.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,7,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L12_正方形面積與周界.html,P4,6,0,True,True,True,True,True,True,True,1,2,7,2,8,True,
+LF-P4-上-L13_複合圖形面積.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L14_周界應用題.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,False,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L15_方向與位置.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L16_棒形圖閱讀.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L17_棒形圖製作.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,5,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L18_綜合複習.html,P4,5,1,True,True,True,True,True,False,True,1,2,7,2,8,False,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-上-L19_SSPA模擬1.html,P4,1,7,True,False,True,False,True,False,False,0,0,5,0,8,False,COVER INFO missing: 對應教材 | COVER INFO missing: SSPA 關聯 | COVER INFO missing: 前置知識 | COVER INFO missing: 本堂目標 | MISSING: error table (.et) | MISSING: repeating-linear-gradient for answer grid lines | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: mnemonic 口訣 (.mn) | MISSING: warm-up section | MISSING: warning alerts (.warn) | NOTE: no step cards (.sc) — may be OK for some lesson types | MISSING: knowledge point sections (.kp)
+LF-P4-上-L20_總複習+寒假計劃.html,P4,2,4,True,False,True,True,True,False,True,2,0,10,1,7,True,MISSING: error table (.et) | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warm-up section | MISSING: warning alerts (.warn)
+LF-P4-下-L21_分數進階.html,P4,6,0,True,True,True,True,True,True,True,2,2,7,3,9,True,
+LF-P4-下-L22_異分母分數比較.html,P4,5,1,True,True,True,True,True,True,True,2,0,7,3,9,True,MISSING: warning alerts (.warn)
+LF-P4-下-L23_異分母分數加法.html,P4,5,1,True,True,True,True,True,True,True,1,0,7,3,9,True,MISSING: warning alerts (.warn)
+LF-P4-下-L24_異分母分數減法+加減混合.html,P4,5,1,True,True,True,True,True,False,True,2,1,7,4,9,False,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-下-L25_分數應用題.html,P4,4,2,True,True,True,True,True,False,True,2,0,7,3,9,True,MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warning alerts (.warn)
+LF-P4-下-L26_小數認識.html,P4,5,1,True,True,True,True,True,True,True,1,0,7,4,9,True,MISSING: warning alerts (.warn)
+LF-P4-下-L27_小數比較+數線.html,P4,4,2,True,True,True,True,True,False,True,1,0,7,3,9,True,MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warning alerts (.warn)
+LF-P4-下-L28_小數加法+減法.html,P4,4,2,True,True,True,True,True,False,True,1,0,7,3,9,True,MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warning alerts (.warn)
+LF-P4-下-L29_小數應用題.html,P4,4,2,True,True,True,True,True,False,True,1,0,7,3,9,False,MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warning alerts (.warn)
+LF-P4-下-L30_對稱.html,P4,5,1,True,True,True,True,True,False,True,1,1,7,3,9,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-下-L31_對稱進階.html,P4,5,1,True,True,True,True,True,False,True,1,1,7,4,9,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-下-L32_倍數與因數進階.html,P4,5,1,True,True,True,True,True,False,True,1,1,7,3,9,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-下-L33_四則混合運算進階.html,P4,4,2,True,True,True,True,True,False,True,1,0,7,4,9,False,MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warning alerts (.warn)
+LF-P4-下-L34_數據與概率入門.html,P4,4,2,True,True,True,True,True,False,True,1,0,7,4,9,True,MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warning alerts (.warn)
+LF-P4-下-L35_周界面積綜合應用.html,P4,5,1,True,True,True,True,True,False,True,1,1,7,4,9,True,MISSING: trap comparison (.tc) - core pedagogy element
+LF-P4-下-L36_方向與路線進階.html,P4,4,2,True,True,True,True,True,False,True,1,0,7,3,9,True,MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warning alerts (.warn)
+LF-P4-下-L37_SSPA模擬2.html,P4,3,3,True,True,True,True,True,False,True,1,1,1,0,4,False,COVER INFO missing: 對應教材 | COVER INFO missing: 核心陷阱 | COVER INFO missing: 前置知識 | COVER INFO missing: 本堂目標 | Error table has only 5 rows (need >=6) | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warm-up section | NOTE: no step cards (.sc) — may be OK for some lesson types | Only 1 section headers (.h1) — seems thin | MISSING: knowledge point sections (.kp)
+LF-P4-下-L38_下學期陷阱總複習.html,P4,2,4,True,True,True,True,True,False,True,5,0,5,0,2,False,COVER INFO missing: 對應教材 | COVER INFO missing: 前置知識 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warm-up section | MISSING: warning alerts (.warn) | NOTE: no step cards (.sc) — may be OK for some lesson types | MISSING: knowledge point sections (.kp)
+LF-P4-下-L39_綜合應用題挑戰.html,P4,4,2,True,True,True,True,True,False,True,1,1,3,0,5,False,COVER INFO missing: 對應教材 | MISSING: trap comparison (.tc) - core pedagogy element | NOTE: no step cards (.sc) — may be OK for some lesson types | MISSING: knowledge point sections (.kp)
+LF-P4-下-L40_學期總結+暑假P5預告.html,P4,4,2,True,True,True,True,True,False,True,1,2,6,3,3,True,COVER INFO missing: 對應教材 | COVER INFO missing: 核心陷阱 | MISSING: trap comparison (.tc) - core pedagogy element | MISSING: warm-up section | NOTE: no step cards (.sc) — may be OK for some lesson types

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<title>霖楓學苑 · LF Academy — Launchpad</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;700;900&family=Noto+Serif+HK:wght@700;900&display=swap');
+:root{--blue:#1A3C6D;--gold:#C9A84C;--red:#DC2626;--green:#16A34A;--white:#FFF;--lightbg:#F9FAFB;--borderc:#D1D5DB;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans HK',sans-serif;background:#F3F4F6;color:#1A1A1A;font-size:14px;line-height:1.6;min-height:100vh;}
+.topbar{background:linear-gradient(135deg,#1A3C6D,#1E4D8C);color:white;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.topbar h1{font-family:'Noto Serif HK',serif;font-size:22px;letter-spacing:2px;}
+.topbar .sub{color:#C9A84C;font-size:12px;}
+.topbar .status{display:flex;gap:12px;flex-wrap:wrap;}
+.topbar .status .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#16A34A;margin-right:4px;}
+.container{max-width:1300px;margin:0 auto;padding:20px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+.card{background:white;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+.card h2{font-size:16px;color:var(--blue);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--gold);}
+.card h3{font-size:13px;color:var(--blue);margin:12px 0 6px;}
+.btn{display:block;width:100%;padding:10px 16px;margin:6px 0;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:all 0.15s;font-family:'Noto Sans HK',sans-serif;}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.btn-primary{background:var(--blue);color:white;}
+.btn-gold{background:var(--gold);color:white;}
+.btn-green{background:var(--green);color:white;}
+.btn-red{background:var(--red);color:white;}
+.btn-outline{background:white;color:var(--blue);border:2px solid var(--blue);}
+.btn-sm{padding:6px 12px;font-size:11px;display:inline-block;width:auto;margin:2px;}
+.stat-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--borderc);font-size:13px;}
+.stat-row .val{font-weight:900;}
+.good{color:var(--green);}.warn{color:#D97706;}
+.search-box{width:100%;padding:10px 14px;border:2px solid var(--borderc);border-radius:8px;font-size:13px;margin:8px 0;font-family:'Noto Sans HK',sans-serif;}
+.search-box:focus{border-color:var(--blue);outline:none;}
+.result-list{max-height:300px;overflow-y:auto;margin-top:8px;}
+.result-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid var(--borderc);font-size:12px;}
+.result-item:hover{background:var(--lightbg);}
+.result-item a{color:var(--blue);text-decoration:none;font-weight:700;}
+.result-item a:hover{text-decoration:underline;}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;margin:0 2px;}
+.tag-html{background:#DBEAFE;color:#1E40AF;}
+.tag-pdf{background:#DCFCE7;color:#166534;}
+.tag-svg{background:#EDE9FE;color:#7C3AED;}
+.cmd-box{background:#1E1E1E;color:#E5E5E5;padding:12px 16px;border-radius:8px;font-family:'Consolas','Courier New',monospace;font-size:12px;margin:8px 0;overflow-x:auto;white-space:nowrap;}
+.cmd-box .prompt{color:#C9A84C;}
+.cmd-box .cmd{color:#93C5FD;}
+.quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;}
+.footer{text-align:center;padding:24px;color:#6B7280;font-size:11px;}
+@media print{body{background:white;}.topbar{background:var(--blue)!important;-webkit-print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<div>
+<h1>霖楓學苑 · LF Academy</h1>
+<div class="sub">Launchpad v1.0 — 一鍵控制台 · 不教數學，教避開陷阱。</div>
+</div>
+<div class="status">
+<span><span class="dot"></span> 系統正常</span>
+<span>📚 160 堂</span>
+<span>📄 160 PDF</span>
+<span>📐 241 SVG</span>
+</div>
+</div>
+
+<div class="container">
+<div class="grid">
+
+<!-- CARD 1: Quick Actions -->
+<div class="card">
+<h2>⚡ 常用操作（點擊即開）</h2>
+
+<div class="quick-actions">
+<a href="講義/master_index.html" class="btn btn-primary btn-sm" target="_blank">📚 講義總索引</a>
+<a href="_operations/trap_diagnostic_test.html" class="btn btn-gold btn-sm" target="_blank">🧪 陷阱診斷測驗</a>
+<a href="_operations/teacher_training_manual.html" class="btn btn-green btn-sm" target="_blank">👩‍🏫 教師培訓手冊</a>
+<a href="_operations/trap_reference_cheatsheet.html" class="btn btn-outline btn-sm" target="_blank">📋 陷阱參考海報</a>
+</div>
+
+<h3>📣 市場與溝通</h3>
+<div class="quick-actions">
+<a href="_operations/parent_comm_templates.html" class="btn btn-outline btn-sm" target="_blank">💬 家長通訊模板</a>
+<a href="_operations/social_media_30day_calendar.html" class="btn btn-outline btn-sm" target="_blank">📱 社交媒體日曆</a>
+<a href="_operations/brand_positioning_v2.html" class="btn btn-outline btn-sm" target="_blank">🎯 品牌定位 v2.0</a>
+</div>
+
+<h3>📊 數據與診斷</h3>
+<div class="quick-actions">
+<a href="_operations/trap_effectiveness_tracker.html" class="btn btn-outline btn-sm" target="_blank">📈 TEI 陷阱追蹤表</a>
+<a href="_operations/routing_report_P5_sample.html" class="btn btn-outline btn-sm" target="_blank">🗺️ 路由報告 (P5樣本)</a>
+<a href="_operations/answer_keys/answer_key_index.html" class="btn btn-outline btn-sm" target="_blank">✅ 答案冊索引</a>
+</div>
+</div>
+
+<!-- CARD 2: System Commands -->
+<div class="card">
+<h2>🖥️ 系統指令（複製→貼上到終端機）</h2>
+
+<h3>全系統健康檢查</h3>
+<div class="cmd-box">
+<span class="prompt">G:\lam-fung-academy&gt;</span> <span class="cmd">python _tools\master_control.py check</span>
+</div>
+
+<h3>重建索引+儀表板</h3>
+<div class="cmd-box">
+<span class="prompt">G:\lam-fung-academy&gt;</span> <span class="cmd">python _tools\master_control.py rebuild</span>
+</div>
+
+<h3>生成TEI追蹤表</h3>
+<div class="cmd-box">
+<span class="prompt">G:\lam-fung-academy&gt;</span> <span class="cmd">python _tools\master_control.py track</span>
+</div>
+
+<h3>生成個人化路由報告</h3>
+<div class="cmd-box">
+<span class="prompt">G:\lam-fung-academy&gt;</span> <span class="cmd">python _tools\master_control.py route --grade P5 --weak T4,T9 --strong T1,T2</span>
+</div>
+
+<h3>重建全部PDF（耗時較長）</h3>
+<div class="cmd-box">
+<span class="prompt">G:\lam-fung-academy&gt;</span> <span class="cmd">python _tools\master_control.py rebuild</span>
+</div>
+
+<p style="font-size:10px;color:#6B7280;margin-top:8px;">💡 提示：複製灰色框內的指令，在 VS Code 終端機 (Ctrl+`) 貼上執行。</p>
+</div>
+
+<!-- CARD 3: Handout Search -->
+<div class="card">
+<h2>🔍 快速搜尋講義</h2>
+<input type="text" class="search-box" id="searchInput" placeholder="輸入關鍵詞：例如「面積」「分數」「棒形圖」「SSPA」...">
+<div class="result-list" id="searchResults">
+<p style="color:#6B7280;font-size:12px;">請輸入關鍵詞開始搜尋...</p>
+</div>
+</div>
+
+<!-- CARD 4: System Status -->
+<div class="card">
+<h2>📊 系統狀態</h2>
+<div class="stat-row"><span>P3 小三</span><span class="val good">40/40 堂 | 40 PDF | 19 SVG</span></div><div class="stat-row"><span>P4 小四</span><span class="val good">40/40 堂 | 40 PDF | 42 SVG</span></div><div class="stat-row"><span>P5 小五</span><span class="val good">40/40 堂 | 40 PDF | 112 SVG</span></div><div class="stat-row"><span>P6 小六</span><span class="val good">40/40 堂 | 40 PDF | 68 SVG</span></div>
+<div class="stat-row" style="margin-top:8px;font-weight:900;border-top:2px solid var(--blue);">
+<span>📦 總計</span>
+<span>160 堂講義 | 160 PDF | 241 SVG</span>
+</div>
+
+<h3 style="margin-top:16px;">🛠️ 工具鏈</h3>
+<div class="stat-row"><span>Python 腳本</span><span>30 個</span></div>
+<div class="stat-row"><span>營運資產</span><span>13 個</span></div>
+<div class="stat-row"><span>品牌配置</span><span>1 個</span></div>
+</div>
+
+<!-- CARD 5: Quick Grade Access -->
+<div class="card">
+<h2>📚 按年級瀏覽</h2>
+<a href="講義/P3/" class="btn btn-outline" target="_blank">📖 P3 小三（40 堂）</a><a href="講義/P4/" class="btn btn-outline" target="_blank">📖 P4 小四（40 堂）</a><a href="講義/P5/" class="btn btn-outline" target="_blank">📖 P5 小五（40 堂）</a><a href="講義/P6/" class="btn btn-outline" target="_blank">📖 P6 小六（40 堂）</a>
+</div>
+
+<!-- CARD 6: Windows Shortcuts -->
+<div class="card">
+<h2>🪟 Windows 一鍵批次檔</h2>
+<p style="font-size:11px;color:#6B7280;margin-bottom:8px;">以下 .bat 檔案放在 G:\lam-fung-academy\ 目錄，雙擊即可執行，無需打開終端機。</p>
+
+<h3>🔍 系統檢查</h3>
+<div class="cmd-box">check_system.bat</div>
+<p style="font-size:10px;color:#6B7280;">雙擊 → 自動檢查 160 堂講義狀態 → 結果顯示在視窗中</p>
+
+<h3>📊 重建全部</h3>
+<div class="cmd-box">rebuild_all.bat</div>
+<p style="font-size:10px;color:#6B7280;">雙擊 → 重建總索引 + 品質儀表板</p>
+
+<h3>📄 重建所有 PDF</h3>
+<div class="cmd-box">rebuild_pdfs.bat</div>
+<p style="font-size:10px;color:#6B7280;">雙擊 → 重建全部 160 個 PDF（⚠️ 需時約 20-30 分鐘）</p>
+</div>
+
+</div>
+</div>
+
+<div class="footer">
+霖楓學苑 · LF Academy · Launchpad v1.0<br>
+開啟方式：在資料夾中雙擊 <strong>launchpad.html</strong> 即可在瀏覽器中打開此控制台<br>
+所有連結均為相對路徑，無需網絡伺服器
+</div>
+
+<script>
+// Search functionality
+const handouts = [
+  {"grade":"P3","name":"LF-P3-上-L01_萬以內數的認識.html","topic":"上-L01_萬以內數的認識","path":"講義/P3/LF-P3-上-L01_萬以內數的認識.html"},
+  {"grade":"P3","name":"LF-P3-上-L02_萬以內加法.html","topic":"上-L02_萬以內加法","path":"講義/P3/LF-P3-上-L02_萬以內加法.html"},
+  {"grade":"P3","name":"LF-P3-上-L03_萬以內減法.html","topic":"上-L03_萬以內減法","path":"講義/P3/LF-P3-上-L03_萬以內減法.html"},
+  {"grade":"P3","name":"LF-P3-上-L04_加減混合運算.html","topic":"上-L04_加減混合運算","path":"講義/P3/LF-P3-上-L04_加減混合運算.html"},
+  {"grade":"P3","name":"LF-P3-上-L05_乘法認識.html","topic":"上-L05_乘法認識","path":"講義/P3/LF-P3-上-L05_乘法認識.html"},
+  {"grade":"P3","name":"LF-P3-上-L06_兩位數乘一位數乘法.html","topic":"上-L06_兩位數乘一位數乘法","path":"講義/P3/LF-P3-上-L06_兩位數乘一位數乘法.html"},
+  {"grade":"P3","name":"LF-P3-上-L07_乘法應用題.html","topic":"上-L07_乘法應用題","path":"講義/P3/LF-P3-上-L07_乘法應用題.html"},
+  {"grade":"P3","name":"LF-P3-上-L08_除法認識.html","topic":"上-L08_除法認識","path":"講義/P3/LF-P3-上-L08_除法認識.html"},
+  {"grade":"P3","name":"LF-P3-上-L09_基本除法.html","topic":"上-L09_基本除法","path":"講義/P3/LF-P3-上-L09_基本除法.html"},
+  {"grade":"P3","name":"LF-P3-上-L10_除法應用題.html","topic":"上-L10_除法應用題","path":"講義/P3/LF-P3-上-L10_除法應用題.html"},
+  {"grade":"P3","name":"LF-P3-上-L11_分數初探.html","topic":"上-L11_分數初探","path":"講義/P3/LF-P3-上-L11_分數初探.html"},
+  {"grade":"P3","name":"LF-P3-上-L12_同分母分數加法.html","topic":"上-L12_同分母分數加法","path":"講義/P3/LF-P3-上-L12_同分母分數加法.html"},
+  {"grade":"P3","name":"LF-P3-上-L13_長度單位.html","topic":"上-L13_長度單位","path":"講義/P3/LF-P3-上-L13_長度單位.html"},
+  {"grade":"P3","name":"LF-P3-上-L14_重量單位.html","topic":"上-L14_重量單位","path":"講義/P3/LF-P3-上-L14_重量單位.html"},
+  {"grade":"P3","name":"LF-P3-上-L15_容量單位.html","topic":"上-L15_容量單位","path":"講義/P3/LF-P3-上-L15_容量單位.html"},
+  {"grade":"P3","name":"LF-P3-上-L16_時間.html","topic":"上-L16_時間","path":"講義/P3/LF-P3-上-L16_時間.html"},
+  {"grade":"P3","name":"LF-P3-上-L17_時間應用題.html","topic":"上-L17_時間應用題","path":"講義/P3/LF-P3-上-L17_時間應用題.html"},
+  {"grade":"P3","name":"LF-P3-上-L18_立體圖形認識.html","topic":"上-L18_立體圖形認識","path":"講義/P3/LF-P3-上-L18_立體圖形認識.html"},
+  {"grade":"P3","name":"LF-P3-上-L19_上學期總複習.html","topic":"上-L19_上學期總複習","path":"講義/P3/LF-P3-上-L19_上學期總複習.html"},
+  {"grade":"P3","name":"LF-P3-上-L20_學期總結+聖誕練習包.html","topic":"上-L20_學期總結+聖誕練習包","path":"講義/P3/LF-P3-上-L20_學期總結+聖誕練習包.html"},
+  {"grade":"P3","name":"LF-P3-下-L21_乘法進階.html","topic":"下-L21_乘法進階","path":"講義/P3/LF-P3-下-L21_乘法進階.html"},
+  {"grade":"P3","name":"LF-P3-下-L22_除法進階.html","topic":"下-L22_除法進階","path":"講義/P3/LF-P3-下-L22_除法進階.html"},
+  {"grade":"P3","name":"LF-P3-下-L23_除法應用題.html","topic":"下-L23_除法應用題","path":"講義/P3/LF-P3-下-L23_除法應用題.html"},
+  {"grade":"P3","name":"LF-P3-下-L24_四則混合.html","topic":"下-L24_四則混合","path":"講義/P3/LF-P3-下-L24_四則混合.html"},
+  {"grade":"P3","name":"LF-P3-下-L25_分數進階.html","topic":"下-L25_分數進階","path":"講義/P3/LF-P3-下-L25_分數進階.html"},
+  {"grade":"P3","name":"LF-P3-下-L26_分數應用題.html","topic":"下-L26_分數應用題","path":"講義/P3/LF-P3-下-L26_分數應用題.html"},
+  {"grade":"P3","name":"LF-P3-下-L27_小數初探.html","topic":"下-L27_小數初探","path":"講義/P3/LF-P3-下-L27_小數初探.html"},
+  {"grade":"P3","name":"LF-P3-下-L28_棒形圖閱讀.html","topic":"下-L28_棒形圖閱讀","path":"講義/P3/LF-P3-下-L28_棒形圖閱讀.html"},
+  {"grade":"P3","name":"LF-P3-下-L29_棒形圖製作.html","topic":"下-L29_棒形圖製作","path":"講義/P3/LF-P3-下-L29_棒形圖製作.html"},
+  {"grade":"P3","name":"LF-P3-下-L30_綜合小數測量圖表.html","topic":"下-L30_綜合小數測量圖表","path":"講義/P3/LF-P3-下-L30_綜合小數測量圖表.html"},
+  {"grade":"P3","name":"LF-P3-下-L31_容量進階.html","topic":"下-L31_容量進階","path":"講義/P3/LF-P3-下-L31_容量進階.html"},
+  {"grade":"P3","name":"LF-P3-下-L32_時間進階.html","topic":"下-L32_時間進階","path":"講義/P3/LF-P3-下-L32_時間進階.html"},
+  {"grade":"P3","name":"LF-P3-下-L33_時間應用題.html","topic":"下-L33_時間應用題","path":"講義/P3/LF-P3-下-L33_時間應用題.html"},
+  {"grade":"P3","name":"LF-P3-下-L34_立體圖形進階.html","topic":"下-L34_立體圖形進階","path":"講義/P3/LF-P3-下-L34_立體圖形進階.html"},
+  {"grade":"P3","name":"LF-P3-下-L35_數感進階.html","topic":"下-L35_數感進階","path":"講義/P3/LF-P3-下-L35_數感進階.html"},
+  {"grade":"P3","name":"LF-P3-下-L36_方向和位置.html","topic":"下-L36_方向和位置","path":"講義/P3/LF-P3-下-L36_方向和位置.html"},
+  {"grade":"P3","name":"LF-P3-下-L37_對稱初探.html","topic":"下-L37_對稱初探","path":"講義/P3/LF-P3-下-L37_對稱初探.html"},
+  {"grade":"P3","name":"LF-P3-下-L38_可能性入門.html","topic":"下-L38_可能性入門","path":"講義/P3/LF-P3-下-L38_可能性入門.html"},
+  {"grade":"P3","name":"LF-P3-下-L39_下學期總複習.html","topic":"下-L39_下學期總複習","path":"講義/P3/LF-P3-下-L39_下學期總複習.html"},
+  {"grade":"P3","name":"LF-P3-下-L40_學期總結+暑假升P4預告.html","topic":"下-L40_學期總結+暑假升P4預告","path":"講義/P3/LF-P3-下-L40_學期總結+暑假升P4預告.html"},
+  {"grade":"P4","name":"LF-P4-上-L01_五位數認識.html","topic":"上-L01_五位數認識","path":"講義/P4/LF-P4-上-L01_五位數認識.html"},
+  {"grade":"P4","name":"LF-P4-上-L02_兩位數除法.html","topic":"上-L02_兩位數除法","path":"講義/P4/LF-P4-上-L02_兩位數除法.html"},
+  {"grade":"P4","name":"LF-P4-上-L03_三位數除法.html","topic":"上-L03_三位數除法","path":"講義/P4/LF-P4-上-L03_三位數除法.html"},
+  {"grade":"P4","name":"LF-P4-上-L04_四則混合運算.html","topic":"上-L04_四則混合運算","path":"講義/P4/LF-P4-上-L04_四則混合運算.html"},
+  {"grade":"P4","name":"LF-P4-上-L05_四則應用題.html","topic":"上-L05_四則應用題","path":"講義/P4/LF-P4-上-L05_四則應用題.html"},
+  {"grade":"P4","name":"LF-P4-上-L06_倍數與因數.html","topic":"上-L06_倍數與因數","path":"講義/P4/LF-P4-上-L06_倍數與因數.html"},
+  {"grade":"P4","name":"LF-P4-上-L07_HCF+LCM.html","topic":"上-L07_HCF+LCM","path":"講義/P4/LF-P4-上-L07_HCF+LCM.html"},
+  {"grade":"P4","name":"LF-P4-上-L08_分數認識.html","topic":"上-L08_分數認識","path":"講義/P4/LF-P4-上-L08_分數認識.html"},
+  {"grade":"P4","name":"LF-P4-上-L09_同分母分數加減.html","topic":"上-L09_同分母分數加減","path":"講義/P4/LF-P4-上-L09_同分母分數加減.html"},
+  {"grade":"P4","name":"LF-P4-上-L10_分數比較+擴分約分.html","topic":"上-L10_分數比較+擴分約分","path":"講義/P4/LF-P4-上-L10_分數比較+擴分約分.html"},
+  {"grade":"P4","name":"LF-P4-上-L11_面積入門.html","topic":"上-L11_面積入門","path":"講義/P4/LF-P4-上-L11_面積入門.html"},
+  {"grade":"P4","name":"LF-P4-上-L12_正方形面積與周界.html","topic":"上-L12_正方形面積與周界","path":"講義/P4/LF-P4-上-L12_正方形面積與周界.html"},
+  {"grade":"P4","name":"LF-P4-上-L13_複合圖形面積.html","topic":"上-L13_複合圖形面積","path":"講義/P4/LF-P4-上-L13_複合圖形面積.html"},
+  {"grade":"P4","name":"LF-P4-上-L14_周界應用題.html","topic":"上-L14_周界應用題","path":"講義/P4/LF-P4-上-L14_周界應用題.html"},
+  {"grade":"P4","name":"LF-P4-上-L15_方向與位置.html","topic":"上-L15_方向與位置","path":"講義/P4/LF-P4-上-L15_方向與位置.html"},
+  {"grade":"P4","name":"LF-P4-上-L16_棒形圖閱讀.html","topic":"上-L16_棒形圖閱讀","path":"講義/P4/LF-P4-上-L16_棒形圖閱讀.html"},
+  {"grade":"P4","name":"LF-P4-上-L17_棒形圖製作.html","topic":"上-L17_棒形圖製作","path":"講義/P4/LF-P4-上-L17_棒形圖製作.html"},
+  {"grade":"P4","name":"LF-P4-上-L18_綜合複習.html","topic":"上-L18_綜合複習","path":"講義/P4/LF-P4-上-L18_綜合複習.html"},
+  {"grade":"P4","name":"LF-P4-上-L19_SSPA模擬1.html","topic":"上-L19_SSPA模擬1","path":"講義/P4/LF-P4-上-L19_SSPA模擬1.html"},
+  {"grade":"P4","name":"LF-P4-上-L20_總複習+寒假計劃.html","topic":"上-L20_總複習+寒假計劃","path":"講義/P4/LF-P4-上-L20_總複習+寒假計劃.html"},
+  {"grade":"P4","name":"LF-P4-下-L21_分數進階.html","topic":"下-L21_分數進階","path":"講義/P4/LF-P4-下-L21_分數進階.html"},
+  {"grade":"P4","name":"LF-P4-下-L22_異分母分數比較.html","topic":"下-L22_異分母分數比較","path":"講義/P4/LF-P4-下-L22_異分母分數比較.html"},
+  {"grade":"P4","name":"LF-P4-下-L23_異分母分數加法.html","topic":"下-L23_異分母分數加法","path":"講義/P4/LF-P4-下-L23_異分母分數加法.html"},
+  {"grade":"P4","name":"LF-P4-下-L24_異分母分數減法+加減混合.html","topic":"下-L24_異分母分數減法+加減混合","path":"講義/P4/LF-P4-下-L24_異分母分數減法+加減混合.html"},
+  {"grade":"P4","name":"LF-P4-下-L25_分數應用題.html","topic":"下-L25_分數應用題","path":"講義/P4/LF-P4-下-L25_分數應用題.html"},
+  {"grade":"P4","name":"LF-P4-下-L26_小數認識.html","topic":"下-L26_小數認識","path":"講義/P4/LF-P4-下-L26_小數認識.html"},
+  {"grade":"P4","name":"LF-P4-下-L27_小數比較+數線.html","topic":"下-L27_小數比較+數線","path":"講義/P4/LF-P4-下-L27_小數比較+數線.html"},
+  {"grade":"P4","name":"LF-P4-下-L28_小數加法+減法.html","topic":"下-L28_小數加法+減法","path":"講義/P4/LF-P4-下-L28_小數加法+減法.html"},
+  {"grade":"P4","name":"LF-P4-下-L29_小數應用題.html","topic":"下-L29_小數應用題","path":"講義/P4/LF-P4-下-L29_小數應用題.html"},
+  {"grade":"P4","name":"LF-P4-下-L30_對稱.html","topic":"下-L30_對稱","path":"講義/P4/LF-P4-下-L30_對稱.html"},
+  {"grade":"P4","name":"LF-P4-下-L31_對稱進階.html","topic":"下-L31_對稱進階","path":"講義/P4/LF-P4-下-L31_對稱進階.html"},
+  {"grade":"P4","name":"LF-P4-下-L32_倍數與因數進階.html","topic":"下-L32_倍數與因數進階","path":"講義/P4/LF-P4-下-L32_倍數與因數進階.html"},
+  {"grade":"P4","name":"LF-P4-下-L33_四則混合運算進階.html","topic":"下-L33_四則混合運算進階","path":"講義/P4/LF-P4-下-L33_四則混合運算進階.html"},
+  {"grade":"P4","name":"LF-P4-下-L34_數據與概率入門.html","topic":"下-L34_數據與概率入門","path":"講義/P4/LF-P4-下-L34_數據與概率入門.html"},
+  {"grade":"P4","name":"LF-P4-下-L35_周界面積綜合應用.html","topic":"下-L35_周界面積綜合應用","path":"講義/P4/LF-P4-下-L35_周界面積綜合應用.html"},
+  {"grade":"P4","name":"LF-P4-下-L36_方向與路線進階.html","topic":"下-L36_方向與路線進階","path":"講義/P4/LF-P4-下-L36_方向與路線進階.html"},
+  {"grade":"P4","name":"LF-P4-下-L37_SSPA模擬2.html","topic":"下-L37_SSPA模擬2","path":"講義/P4/LF-P4-下-L37_SSPA模擬2.html"},
+  {"grade":"P4","name":"LF-P4-下-L38_下學期陷阱總複習.html","topic":"下-L38_下學期陷阱總複習","path":"講義/P4/LF-P4-下-L38_下學期陷阱總複習.html"},
+  {"grade":"P4","name":"LF-P4-下-L39_綜合應用題挑戰.html","topic":"下-L39_綜合應用題挑戰","path":"講義/P4/LF-P4-下-L39_綜合應用題挑戰.html"},
+  {"grade":"P4","name":"LF-P4-下-L40_學期總結+暑假P5預告.html","topic":"下-L40_學期總結+暑假P5預告","path":"講義/P4/LF-P4-下-L40_學期總結+暑假P5預告.html"},
+  {"grade":"P5","name":"LF-P5-T2-L37-SSPA模擬4.html","topic":"T2-L37-SSPA模擬4","path":"講義/P5/LF-P5-T2-L37-SSPA模擬4.html"},
+  {"grade":"P5","name":"LF-P5-T2-L40-個人弱項閉環+P6.html","topic":"T2-L40-個人弱項閉環+P6","path":"講義/P5/LF-P5-T2-L40-個人弱項閉環+P6.html"},
+  {"grade":"P5","name":"LF-P5-上-L01_多位數.html","topic":"上-L01_多位數","path":"講義/P5/LF-P5-上-L01_多位數.html"},
+  {"grade":"P5","name":"LF-P5-上-L02_大數估算.html","topic":"上-L02_大數估算","path":"講義/P5/LF-P5-上-L02_大數估算.html"},
+  {"grade":"P5","name":"LF-P5-上-L03_平行四邊形與三角形面積.html","topic":"上-L03_平行四邊形與三角形面積","path":"講義/P5/LF-P5-上-L03_平行四邊形與三角形面積.html"},
+  {"grade":"P5","name":"LF-P5-上-L04_梯形多邊形面積.html","topic":"上-L04_梯形多邊形面積","path":"講義/P5/LF-P5-上-L04_梯形多邊形面積.html"},
+  {"grade":"P5","name":"LF-P5-上-L05_面積陷阱專項.html","topic":"上-L05_面積陷阱專項","path":"講義/P5/LF-P5-上-L05_面積陷阱專項.html"},
+  {"grade":"P5","name":"LF-P5-上-L06-綜合-面積-多位數-估算-v1.html","topic":"上-L06-綜合-面積-多位數-估算-v1","path":"講義/P5/LF-P5-上-L06-綜合-面積-多位數-估算-v1.html"},
+  {"grade":"P5","name":"LF-P5-上-L07-異分母分數比較-加法-減法-v1.html","topic":"上-L07-異分母分數比較-加法-減法-v1","path":"講義/P5/LF-P5-上-L07-異分母分數比較-加法-減法-v1.html"},
+  {"grade":"P5","name":"LF-P5-上-L08_異分母分數加法.html","topic":"上-L08_異分母分數加法","path":"講義/P5/LF-P5-上-L08_異分母分數加法.html"},
+  {"grade":"P5","name":"LF-P5-上-L09-分數乘法-v6.html","topic":"上-L09-分數乘法-v6","path":"講義/P5/LF-P5-上-L09-分數乘法-v6.html"},
+  {"grade":"P5","name":"LF-P5-上-L10-分數應用題-v6.html","topic":"上-L10-分數應用題-v6","path":"講義/P5/LF-P5-上-L10-分數應用題-v6.html"},
+  {"grade":"P5","name":"LF-P5-上-L11-SSPA模擬1.html","topic":"上-L11-SSPA模擬1","path":"講義/P5/LF-P5-上-L11-SSPA模擬1.html"},
+  {"grade":"P5","name":"LF-P5-上-L12-小數乘法-v6.html","topic":"上-L12-小數乘法-v6","path":"講義/P5/LF-P5-上-L12-小數乘法-v6.html"},
+  {"grade":"P5","name":"LF-P5-上-L13-小數近似值+應用.html","topic":"上-L13-小數近似值+應用","path":"講義/P5/LF-P5-上-L13-小數近似值+應用.html"},
+  {"grade":"P5","name":"LF-P5-上-L14-代數式認識+簡易方程.html","topic":"上-L14-代數式認識+簡易方程","path":"講義/P5/LF-P5-上-L14-代數式認識+簡易方程.html"},
+  {"grade":"P5","name":"LF-P5-上-L15-方程應用題.html","topic":"上-L15-方程應用題","path":"講義/P5/LF-P5-上-L15-方程應用題.html"},
+  {"grade":"P5","name":"LF-P5-上-L16_綜合-分數-小數-方程.html","topic":"上-L16_綜合-分數-小數-方程","path":"講義/P5/LF-P5-上-L16_綜合-分數-小數-方程.html"},
+  {"grade":"P5","name":"LF-P5-上-L17_上學期陷阱總複習-數與量.html","topic":"上-L17_上學期陷阱總複習-數與量","path":"講義/P5/LF-P5-上-L17_上學期陷阱總複習-數與量.html"},
+  {"grade":"P5","name":"LF-P5-上-L18_上學期陷阱總複習-圖形與方程.html","topic":"上-L18_上學期陷阱總複習-圖形與方程","path":"講義/P5/LF-P5-上-L18_上學期陷阱總複習-圖形與方程.html"},
+  {"grade":"P5","name":"LF-P5-上-L19-SSPA模擬2.html","topic":"上-L19-SSPA模擬2","path":"講義/P5/LF-P5-上-L19-SSPA模擬2.html"},
+  {"grade":"P5","name":"LF-P5-上-L20_模擬2檢討+寒假SSPA計劃.html","topic":"上-L20_模擬2檢討+寒假SSPA計劃","path":"講義/P5/LF-P5-上-L20_模擬2檢討+寒假SSPA計劃.html"},
+  {"grade":"P5","name":"LF-P5-上-L34_SSPA計算題滿分衝刺.html","topic":"上-L34_SSPA計算題滿分衝刺","path":"講義/P5/LF-P5-上-L34_SSPA計算題滿分衝刺.html"},
+  {"grade":"P5","name":"LF-P5-上-L35_SSPA應用題滿分衝刺.html","topic":"上-L35_SSPA應用題滿分衝刺","path":"講義/P5/LF-P5-上-L35_SSPA應用題滿分衝刺.html"},
+  {"grade":"P5","name":"LF-P5-上-L36_SSPA幾何題滿分衝刺.html","topic":"上-L36_SSPA幾何題滿分衝刺","path":"講義/P5/LF-P5-上-L36_SSPA幾何題滿分衝刺.html"},
+  {"grade":"P5","name":"LF-P5-下-L21_圓的認識.html","topic":"下-L21_圓的認識","path":"講義/P5/LF-P5-下-L21_圓的認識.html"},
+  {"grade":"P5","name":"LF-P5-下-L22_分數除法_intro.html","topic":"下-L22_分數除法_intro","path":"講義/P5/LF-P5-下-L22_分數除法_intro.html"},
+  {"grade":"P5","name":"LF-P5-下-L23_三分數混合_四則混合.html","topic":"下-L23_三分數混合_四則混合","path":"講義/P5/LF-P5-下-L23_三分數混合_四則混合.html"},
+  {"grade":"P5","name":"LF-P5-下-L24_分數文字題_剩餘逆向.html","topic":"下-L24_分數文字題_剩餘逆向","path":"講義/P5/LF-P5-下-L24_分數文字題_剩餘逆向.html"},
+  {"grade":"P5","name":"LF-P5-下-L25_體積應用題專項.html","topic":"下-L25_體積應用題專項","path":"講義/P5/LF-P5-下-L25_體積應用題專項.html"},
+  {"grade":"P5","name":"LF-P5-下-L26-體積概念+長方體正方體體積+表面面積.html","topic":"下-L26-體積概念+長方體正方體體積+表面面積","path":"講義/P5/LF-P5-下-L26-體積概念+長方體正方體體積+表面面積.html"},
+  {"grade":"P5","name":"LF-P5-下-L27-複合立體+排水法.html","topic":"下-L27-複合立體+排水法","path":"講義/P5/LF-P5-下-L27-複合立體+排水法.html"},
+  {"grade":"P5","name":"LF-P5-下-L28_綜合-體積-面積-分數.html","topic":"下-L28_綜合-體積-面積-分數","path":"講義/P5/LF-P5-下-L28_綜合-體積-面積-分數.html"},
+  {"grade":"P5","name":"LF-P5-下-L29_SSPA模擬3.html","topic":"下-L29_SSPA模擬3","path":"講義/P5/LF-P5-下-L29_SSPA模擬3.html"},
+  {"grade":"P5","name":"LF-P5-下-L30_混合運算陷阱專項.html","topic":"下-L30_混合運算陷阱專項","path":"講義/P5/LF-P5-下-L30_混合運算陷阱專項.html"},
+  {"grade":"P5","name":"LF-P5-下-L31_代數式進階+兩步方程.html","topic":"下-L31_代數式進階+兩步方程","path":"講義/P5/LF-P5-下-L31_代數式進階+兩步方程.html"},
+  {"grade":"P5","name":"LF-P5-下-L32_複合棒形圖+數據分析.html","topic":"下-L32_複合棒形圖+數據分析","path":"講義/P5/LF-P5-下-L32_複合棒形圖+數據分析.html"},
+  {"grade":"P5","name":"LF-P5-下-L33_綜合-方程-數據-應用題.html","topic":"下-L33_綜合-方程-數據-應用題","path":"講義/P5/LF-P5-下-L33_綜合-方程-數據-應用題.html"},
+  {"grade":"P5","name":"LF-P5-下-L38_個人弱項終極補底.html","topic":"下-L38_個人弱項終極補底","path":"講義/P5/LF-P5-下-L38_個人弱項終極補底.html"},
+  {"grade":"P5","name":"LF-P5-下-L39_SSPA終極跨課題殺手題.html","topic":"下-L39_SSPA終極跨課題殺手題","path":"講義/P5/LF-P5-下-L39_SSPA終極跨課題殺手題.html"},
+  {"grade":"P6","name":"LF-P6-上-L01_小數除法.html","topic":"上-L01_小數除法","path":"講義/P6/LF-P6-上-L01_小數除法.html"},
+  {"grade":"P6","name":"LF-P6-上-L02_分數小數百分數互換.html","topic":"上-L02_分數小數百分數互換","path":"講義/P6/LF-P6-上-L02_分數小數百分數互換.html"},
+  {"grade":"P6","name":"LF-P6-上-L03_綜合應用.html","topic":"上-L03_綜合應用","path":"講義/P6/LF-P6-上-L03_綜合應用.html"},
+  {"grade":"P6","name":"LF-P6-上-L04_百分數佔比求原值.html","topic":"上-L04_百分數佔比求原值","path":"講義/P6/LF-P6-上-L04_百分數佔比求原值.html"},
+  {"grade":"P6","name":"LF-P6-上-L05_百分數增減連續變化.html","topic":"上-L05_百分數增減連續變化","path":"講義/P6/LF-P6-上-L05_百分數增減連續變化.html"},
+  {"grade":"P6","name":"LF-P6-上-L11_SSPA計算題滿分.html","topic":"上-L11_SSPA計算題滿分","path":"講義/P6/LF-P6-上-L11_SSPA計算題滿分.html"},
+  {"grade":"P6","name":"LF-P6-上-L12_SSPA應用題幾何題滿分.html","topic":"上-L12_SSPA應用題幾何題滿分","path":"講義/P6/LF-P6-上-L12_SSPA應用題幾何題滿分.html"},
+  {"grade":"P6","name":"LF-P6-上-L13_SSPA模擬2.html","topic":"上-L13_SSPA模擬2","path":"講義/P6/LF-P6-上-L13_SSPA模擬2.html"},
+  {"grade":"P6","name":"LF-P6-上-L14_速率應用題進階.html","topic":"上-L14_速率應用題進階","path":"講義/P6/LF-P6-上-L14_速率應用題進階.html"},
+  {"grade":"P6","name":"LF-P6-上-L15_折線圖閱讀製作趨勢分析.html","topic":"上-L15_折線圖閱讀製作趨勢分析","path":"講義/P6/LF-P6-上-L15_折線圖閱讀製作趨勢分析.html"},
+  {"grade":"P6","name":"LF-P6-上-L16_容量與體積進階.html","topic":"上-L16_容量與體積進階","path":"講義/P6/LF-P6-上-L16_容量與體積進階.html"},
+  {"grade":"P6","name":"LF-P6-上-L17_圓形圖閱讀製作.html","topic":"上-L17_圓形圖閱讀製作","path":"講義/P6/LF-P6-上-L17_圓形圖閱讀製作.html"},
+  {"grade":"P6","name":"LF-P6-上-L18_綜合圖表幾何測量.html","topic":"上-L18_綜合圖表幾何測量","path":"講義/P6/LF-P6-上-L18_綜合圖表幾何測量.html"},
+  {"grade":"P6","name":"LF-P6-上-L19_SSPA模擬3.html","topic":"上-L19_SSPA模擬3","path":"講義/P6/LF-P6-上-L19_SSPA模擬3.html"},
+  {"grade":"P6","name":"LF-P6-上-L20_學期總結寒假SSPA計劃.html","topic":"上-L20_學期總結寒假SSPA計劃","path":"講義/P6/LF-P6-上-L20_學期總結寒假SSPA計劃.html"},
+  {"grade":"P6","name":"LF-P6-下-L21_圓的認識進階_圓規作圖扇形.html","topic":"下-L21_圓的認識進階_圓規作圖扇形","path":"講義/P6/LF-P6-下-L21_圓的認識進階_圓規作圖扇形.html"},
+  {"grade":"P6","name":"LF-P6-下-L22_圓面積進階應用_環形複合圓形.html","topic":"下-L22_圓面積進階應用_環形複合圓形","path":"講義/P6/LF-P6-下-L22_圓面積進階應用_環形複合圓形.html"},
+  {"grade":"P6","name":"LF-P6-下-L23_百分數應用進階_利潤虧損折扣.html","topic":"下-L23_百分數應用進階_利潤虧損折扣","path":"講義/P6/LF-P6-下-L23_百分數應用進階_利潤虧損折扣.html"},
+  {"grade":"P6","name":"LF-P6-下-L24_方程進階_含括號分數方程.html","topic":"下-L24_方程進階_含括號分數方程","path":"講義/P6/LF-P6-下-L24_方程進階_含括號分數方程.html"},
+  {"grade":"P6","name":"LF-P6-下-L25_列方程解應用題進階.html","topic":"下-L25_列方程解應用題進階","path":"講義/P6/LF-P6-下-L25_列方程解應用題進階.html"},
+  {"grade":"P6","name":"LF-P6-下-L26_圓形圖閱讀製作.html","topic":"下-L26_圓形圖閱讀製作","path":"講義/P6/LF-P6-下-L26_圓形圖閱讀製作.html"},
+  {"grade":"P6","name":"LF-P6-下-L27_綜合統計圖表_棒形折線圓形.html","topic":"下-L27_綜合統計圖表_棒形折線圓形","path":"講義/P6/LF-P6-下-L27_綜合統計圖表_棒形折線圓形.html"},
+  {"grade":"P6","name":"LF-P6-下-L28_速率應用進階_多段行程相對速度.html","topic":"下-L28_速率應用進階_多段行程相對速度","path":"講義/P6/LF-P6-下-L28_速率應用進階_多段行程相對速度.html"},
+  {"grade":"P6","name":"LF-P6-下-L29_容量體積進階_排水法溢出截面.html","topic":"下-L29_容量體積進階_排水法溢出截面","path":"講義/P6/LF-P6-下-L29_容量體積進階_排水法溢出截面.html"},
+  {"grade":"P6","name":"LF-P6-下-L30_SSPA模擬4_終極全真.html","topic":"下-L30_SSPA模擬4_終極全真","path":"講義/P6/LF-P6-下-L30_SSPA模擬4_終極全真.html"},
+  {"grade":"P6","name":"LF-P6-下-L31_SSPA跨課題殺手題計算篇.html","topic":"下-L31_SSPA跨課題殺手題計算篇","path":"講義/P6/LF-P6-下-L31_SSPA跨課題殺手題計算篇.html"},
+  {"grade":"P6","name":"LF-P6-下-L32_SSPA跨課題殺手題應用幾何篇.html","topic":"下-L32_SSPA跨課題殺手題應用幾何篇","path":"講義/P6/LF-P6-下-L32_SSPA跨課題殺手題應用幾何篇.html"},
+  {"grade":"P6","name":"LF-P6-下-L33_SSPA模擬5終極考前最後一戰.html","topic":"下-L33_SSPA模擬5終極考前最後一戰","path":"講義/P6/LF-P6-下-L33_SSPA模擬5終極考前最後一戰.html"},
+  {"grade":"P6","name":"LF-P6-下-L34_個人弱項終極補底.html","topic":"下-L34_個人弱項終極補底","path":"講義/P6/LF-P6-下-L34_個人弱項終極補底.html"},
+  {"grade":"P6","name":"LF-P6-下-L35_中一預習負數代數式化簡方程進階.html","topic":"下-L35_中一預習負數代數式化簡方程進階","path":"講義/P6/LF-P6-下-L35_中一預習負數代數式化簡方程進階.html"},
+  {"grade":"P6","name":"LF-P6-下-L36_中一預習不等式入門坐標系進階.html","topic":"下-L36_中一預習不等式入門坐標系進階","path":"講義/P6/LF-P6-下-L36_中一預習不等式入門坐標系進階.html"},
+  {"grade":"P6","name":"LF-P6-下-L37_中一預習面積體積公式擴展.html","topic":"下-L37_中一預習面積體積公式擴展","path":"講義/P6/LF-P6-下-L37_中一預習面積體積公式擴展.html"},
+  {"grade":"P6","name":"LF-P6-下-L38_SSPA跨課題殺手題混合陷阱.html","topic":"下-L38_SSPA跨課題殺手題混合陷阱","path":"講義/P6/LF-P6-下-L38_SSPA跨課題殺手題混合陷阱.html"},
+  {"grade":"P6","name":"LF-P6-下-L39_中學數學思維轉換.html","topic":"下-L39_中學數學思維轉換","path":"講義/P6/LF-P6-下-L39_中學數學思維轉換.html"},
+  {"grade":"P6","name":"LF-P6-下-L40_學期總結暑假中學預習計劃.html","topic":"下-L40_學期總結暑假中學預習計劃","path":"講義/P6/LF-P6-下-L40_學期總結暑假中學預習計劃.html"},
+  {"grade":"P6","name":"學生版講義_P6_上_L06_圓周與圓面積_v6.html","topic":"學生版講義_P6_上_L06_圓周與圓面積_v6","path":"講義/P6/學生版講義_P6_上_L06_圓周與圓面積_v6.html"},
+  {"grade":"P6","name":"學生版講義_P6_上_L07_SSPA模擬1_v6.html","topic":"學生版講義_P6_上_L07_SSPA模擬1_v6","path":"講義/P6/學生版講義_P6_上_L07_SSPA模擬1_v6.html"},
+  {"grade":"P6","name":"學生版講義_P6_上_L08_平均數與速率基礎_v6.html","topic":"學生版講義_P6_上_L08_平均數與速率基礎_v6","path":"講義/P6/學生版講義_P6_上_L08_平均數與速率基礎_v6.html"},
+  {"grade":"P6","name":"學生版講義_P6_上_L09_速率應用_v6.html","topic":"學生版講義_P6_上_L09_速率應用_v6","path":"講義/P6/學生版講義_P6_上_L09_速率應用_v6.html"},
+  {"grade":"P6","name":"學生版講義_P6_上_L10_綜合百分數平均數速率_v6.html","topic":"學生版講義_P6_上_L10_綜合百分數平均數速率_v6","path":"講義/P6/學生版講義_P6_上_L10_綜合百分數平均數速率_v6.html"},
+];
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+
+searchInput.addEventListener('input', function() {
+  const query = this.value.toLowerCase();
+  if (query.length < 1) {
+    searchResults.innerHTML = '<p style="color:#6B7280;font-size:12px;">請輸入關鍵詞開始搜尋...</p>';
+    return;
+  }
+  const filtered = handouts.filter(h => h.topic.toLowerCase().includes(query) || h.grade.includes(query));
+  if (filtered.length === 0) {
+    searchResults.innerHTML = '<p style="color:#DC2626;font-size:12px;">沒有找到匹配的講義。試試其他關鍵詞。</p>';
+    return;
+  }
+  searchResults.innerHTML = filtered.slice(0, 20).map(h =>
+    `<div class="result-item">
+      <span><span class="tag tag-html">${h.grade}</span> ${h.topic.substring(0,60)}</span>
+      <span><a href="${h.path}" target="_blank">📖 開啟</a></span>
+    </div>`
+  ).join('');
+  if (filtered.length > 20) {
+    searchResults.innerHTML += `<p style="color:#6B7280;font-size:10px;text-align:center;margin-top:4px;">顯示前 20 筆，共 ${filtered.length} 筆結果。請輸入更具體的關鍵詞。</p>`;
+  }
+});
+</script>
+</body>
+</html>
